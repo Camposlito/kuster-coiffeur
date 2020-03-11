@@ -1,11 +1,22 @@
 <div class="container">
-
-
-
+  <div class="text-center">
+    <h1><i class="fas fa-users"></i></h1>
+    <h2>Clientes</h2>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h5> <i class="fas fa-stream"></i> Mostrando todos os registros (<?php contClientes(); ?>)</h4>
+    </div>
+    <div class="col text-right">
+      <button type="button" name="button" class="btn btn-primary">Pesquisar</button>
+      <input type="text" name="pesquisar" value="" class="text-center ">
+    </div>
+  </div>
+  <br>
   <table class="table table-striped table-bordered">
     <thead class="text-center">
       <tr>
-        <th scope="col">Nome</th>
+        <th scope="col" class="text-left">Nome</th>
         <th scope="col">E-mail</th>
         <th scope="col">Celular (1)</th>
         <th scope="col">Celular (2)</th>
@@ -13,22 +24,10 @@
       </tr>
     </thead>
     <tbody class="text-center">
+      <?php ListarClientes(); ?>
+
       <tr>
-        <td>Mark</td>
-        <td>henrique_kuster14@hotmail.com</td>
-        <td>@mdo</td>
-        <td>Otto</td>
-        <td><i class="fas fa-bars"></i></td>
-      </tr>
-      <tr>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-        <td>Otto</td>
-        <td><i class="fas fa-bars"></i></td>
-      </tr>
-      <tr>
-        <td>Larry</td>
+        <td class="text-left">Larry</td>
         <td>the Bird</td>
         <td>@twitter</td>
         <td>Otto</td>
@@ -36,6 +35,7 @@
       </tr>
     </tbody>
   </table>
+
 
 <?php //usar função que pega o iduser passado pelo jQuery para introduzir dados sql no modal ?>
 

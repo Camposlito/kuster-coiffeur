@@ -230,7 +230,13 @@ function contNiverDia($dia, $mes){
   $conn = null;
 }
 
-
+function contClientes(){
+  $sql = "SELECT * FROM info_cliente";
+  $conn = getConnection();
+  $resultado = $conn->query($sql);
+  echo (int) $resultado->rowCount();
+  $conn = null;
+}
 
 function ListarNiverHoje($dia, $mes){
   $sql = "SELECT * FROM info_cliente WHERE niver_dia = '$dia' AND niver_mes = '$mes'";
@@ -347,6 +353,32 @@ function converteMes($mes_num){
     $mes_nome = "Dezembro";
     }
     echo $mes_nome;
+}
+
+function ListarClientes(){
+  $sql = "SELECT * FROM info_cliente";
+  $conn = getConnection();
+  $resultado = $conn->query($sql);
+  if ($resultado !== false) {
+    foreach ($resultado as $row) {
+      echo '<tr>';
+      echo '  <td class="text-left">';
+      echo $row["nome"];
+      echo '</td>';
+      echo '  <td>';
+      echo $row["email"];
+      echo '</td>';
+      echo '  <td>';
+      echo $row["cell1"];
+      echo '</td>';
+      echo '  <td>';
+      echo $row["cell2"];
+      echo '</td>';
+      echo '  <td><i class="fas fa-bars"></i></td>';
+      echo '</tr>';
+    }
+  }
+  $conn = null;
 }
 
  ?>

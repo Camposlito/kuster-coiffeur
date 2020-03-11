@@ -1,9 +1,7 @@
 <div class="container">
       <div class="text-center">
-        <!-- <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->
         <h1><i class="  far fa-user"></i></h1>
         <h2>Cadastrar</h2>
-        <!-- <p class="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p> -->
       </div>
 
       <div class="row ">
