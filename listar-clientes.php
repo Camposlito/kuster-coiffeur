@@ -5,14 +5,23 @@
   </div>
   <div class="row">
     <div class="col">
-      <h5> <i class="fas fa-stream"></i> Mostrando todos os registros (<?php contClientes(); ?>)</h4>
+      <h6> <i class="fas fa-stream"></i> Mostrando todos os registros (<?php echo contClientes(); ?>)</h4>
+    </div>
+    <div class="col">
+
     </div>
     <div class="col text-right">
-      <button type="button" name="button" class="btn btn-primary">Pesquisar</button>
-      <input type="text" name="pesquisar" value="" class="text-center ">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <button type="button" name="enviar-pesquisa" class="btn btn-primary" onclick="getDados()"><i class="fas fa-search"></i></button>
+        </div>
+        <input type="text" name="pesquisa" id="pesquisa" value="" class="form-control" placeholder="Pesquisar">
+      </div>
     </div>
   </div>
   <br>
+
+<!-- Tabela de clientes -->
   <table class="table table-striped table-bordered">
     <thead class="text-center">
       <tr>
@@ -23,7 +32,7 @@
         <th scope="col">Detalhes</th>
       </tr>
     </thead>
-    <tbody class="text-center">
+    <tbody class="text-center" id="Resultado">
       <?php ListarClientes(); ?>
 
       <tr>
@@ -31,7 +40,7 @@
         <td>the Bird</td>
         <td>@twitter</td>
         <td>Otto</td>
-        <td> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="id_user"><i class="fas fa-bars"></i></button> </td>
+        <td> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="1" onclick="getUser()"><i class="fas fa-bars"></i></button> </td>
       </tr>
     </tbody>
   </table>
@@ -53,11 +62,15 @@
         <form>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
+            <input type="text" class="form-control" name="recipient-name" id="recipient-name">
           </div>
-          <div class="form-group">
+          <div class="form-group" id="detalhes">
             <label for="message-text" class="col-form-label">Message:</label>
             <textarea class="form-control" id="message-text"></textarea>
+            <?php
+
+            echo getNome(0); ?>
+            <p>akdjaskldjasldaskd</p>
           </div>
         </form>
       </div>
@@ -79,4 +92,68 @@ var modal = $(this)
 modal.find('.modal-title').text('New message to ' + recipient)
 modal.find('.modal-body input').val(recipient)
 })
+
+//AJAX Pesquisar
+function CriaRequest() {
+     try{
+         request = new XMLHttpRequest();
+     }catch (IEAtual){
+         try{
+             request = new ActiveXObject("Msxml2.XMLHTTP");
+         }catch(IEAntigo){
+             try{
+                 request = new ActiveXObject("Microsoft.XMLHTTP");
+             }catch(falha){
+                 request = false;
+             }
+         }
+     }
+     if (!request)
+         alert("Seu Navegador não suporta Ajax!");
+     else
+         return request;
+ }
+ //Função para enviar os dados
+ function getDados() {
+     // Declaração de Variáveis
+     var nome   = document.getElementById("pesquisa").value;
+     var result = document.getElementById("Resultado");
+     var xmlreq = CriaRequest();
+     // Iniciar uma requisição
+     xmlreq.open("GET", "pesquisar.php?pesquisa=" + nome, true);
+     // Atribui uma função para ser executada sempre que houver uma mudança de estado
+     xmlreq.onreadystatechange = function(){
+         // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4)
+         if (xmlreq.readyState == 4) {
+             // Verifica se o arquivo foi encontrado com sucesso
+             if (xmlreq.status == 200) {
+                 result.innerHTML = xmlreq.responseText;
+             }else{
+                 result.innerHTML = "Erro: " + xmlreq.statusText;
+             }
+         }
+     };
+     xmlreq.send(null);
+ }
+ function getUser(){
+   // Declaração de Variáveis
+   var id   = document.getElementById("recipient-name").value;
+   var result = document.getElementById("detalhes");
+   var xmlreq = CriaRequest();
+   // Iniciar uma requisição
+   xmlreq.open("GET", "detalhes.php?det=" + id, true);
+   // Atribui uma função para ser executada sempre que houver uma mudança de estado
+   xmlreq.onreadystatechange = function(){
+       // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4)
+       if (xmlreq.readyState == 4) {
+           // Verifica se o arquivo foi encontrado com sucesso
+           if (xmlreq.status == 200) {
+               result.innerHTML = xmlreq.responseText;
+           }else{
+               result.innerHTML = "Erro: " + xmlreq.statusText;
+           }
+       }
+   };
+   xmlreq.send(null);
+ }
 </script>

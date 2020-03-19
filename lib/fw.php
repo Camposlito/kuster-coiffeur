@@ -1,6 +1,5 @@
 <?php
 
-
 include 'config.php';
 
 date_default_timezone_set($config['DEFAULT_TIME_ZONE']);
@@ -234,7 +233,7 @@ function contClientes(){
   $sql = "SELECT * FROM info_cliente";
   $conn = getConnection();
   $resultado = $conn->query($sql);
-  echo (int) $resultado->rowCount();
+  return (int) $resultado->rowCount();
   $conn = null;
 }
 
@@ -379,6 +378,14 @@ function ListarClientes(){
     }
   }
   $conn = null;
+}
+
+function getNome($id){
+  $dado = array (
+    "id" => $id
+  );
+  $row = sqlSelectFirst("info_cliente", $dado);
+  echo $row["nome"];
 }
 
  ?>
