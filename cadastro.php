@@ -1,6 +1,6 @@
 <div class="container">
       <div class="text-center">
-        <h1><i class="  far fa-user"></i></h1>
+        <h1><i class="fas fa-user-plus"></i></h1>
         <h2>Cadastrar</h2>
       </div>
 
@@ -117,7 +117,7 @@
             <hr class="mb-4">
             <div class="row">
               <div class="col-md-12 order-md-1">
-                <h4 class="mb-3"><i class="fas fa-cut"></i> Serviços Prestados</h4>
+                <h4 class="mb-3"><i class="fas fa-cut"></i> Serviço Prestado</h4>
                 <div class="row">
                   <div class="col-md-6 md-3">
                     <label for="data">Data</label>

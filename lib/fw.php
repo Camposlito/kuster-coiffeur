@@ -373,7 +373,9 @@ function ListarClientes(){
       echo '  <td>';
       echo $row["cell2"];
       echo '</td>';
-      echo '  <td><i class="fas fa-bars"></i></td>';
+      echo '  <td> <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal" data-whatever="';
+      echo $row["id"];
+      echo '"><i class="fas fa-bars"></i></button> </td>';
       echo '</tr>';
     }
   }
