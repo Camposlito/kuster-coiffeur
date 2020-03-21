@@ -13,7 +13,6 @@ $dia = $_POST["dia"];
 $data = $_POST["data"];
 $descricao = $_POST["servico"];
 
-echo $nome;
 
 addCliente($nome, $email, $cell1, $cell2, $tell, $mes, $dia);
 $id_cliente = getIdCliente($nome);

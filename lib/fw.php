@@ -373,7 +373,7 @@ function ListarClientes(){
       echo '  <td>';
       echo $row["cell2"];
       echo '</td>';
-      echo '  <td> <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal" data-whatever="';
+      echo '  <td> <button type="button" class="btn btn-link" data-toggle="modal" data-target="#detalhesModal" data-whatever="';
       echo $row["id"];
       echo '"><i class="fas fa-bars"></i></button> </td>';
       echo '</tr>';
@@ -382,12 +382,61 @@ function ListarClientes(){
   $conn = null;
 }
 
-function getNome($id){
+function getNomeById($id){
   $dado = array (
     "id" => $id
   );
   $row = sqlSelectFirst("info_cliente", $dado);
-  echo $row["nome"];
+  return $row["nome"];
 }
+
+function getUltimoServ($id){
+  $dia = "";
+  $mes = "";
+  $ano = "";
+  $servico = "";
+  $sql = "SELECT * FROM servico WHERE id_cliente = '$id'";
+  $conn = getConnection();
+  $resultado = $conn->query($sql);
+  if ($resultado !== false) {
+    //loop para cada string de data disponivel
+    foreach ($resultado as $row) {
+      if (!is_null($row["data"])) {
+        //divide data em 3 arrays
+        $splitData = explode("/", $row["data"]);
+        $servComp = $row["descricao"];
+        //compara cada ano
+        if ($splitData[2] == $ano) {
+          //compara cada mes
+          if ($splitData[1] == $mes) {
+            //compara cada dia
+            if ($splitData[0] >= $dia) {
+              $servico = $servComp;
+              $dia = $splitData[0];
+            }
+          }
+          if ($splitData[1] > $mes) {
+            $servico = $servComp;
+            $mes = $splitData[1];
+            $dia = $splitData[0];
+          }
+        }
+        if ($splitData[2] > $ano) {
+          $servico = $servComp;
+          $ano = $splitData[2];
+          $mes = $splitData[1];
+          $dia = $splitData[0];
+        }
+      }
+    }
+  }
+  $conn = null;
+  if (($dia == "") && ($mes == "") && ($ano == "") && ($servico == "")) {
+    return "";
+  }else {
+    return $dia."/".$mes."/".$ano." - ".$servico;
+  }
+}
+
 
  ?>

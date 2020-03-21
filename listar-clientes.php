@@ -37,19 +37,37 @@
     </tbody>
   </table>
 
-<!-- modal teste -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content" id="detalhes">
+<!-- modal info_cliente -->
+  <div class="modal fade" id="detalhesModal" tabindex="-1" role="dialog" aria-labelledby="detalhesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content" id="detalhes">
 
+      </div>
     </div>
   </div>
-</div>
+
+<!-- modal serviços -->
+  <div class="modal fade" id="servicosModal" tabindex="-1" role="dialog" aria-labelledby="servicosModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content" id="showServicos">
+
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <script>
+//pesquisar com a tecla enter
+jQuery('#pesquisa').keypress(function(event){
+	var keycode = (event.keyCode ? event.keyCode : event.which);
+	if(keycode == '13'){
+		getDados();
+	}
+});
+
 //Modal detalhes do cliente + AJAX de info_cliente
-$('#exampleModal').on('show.bs.modal', function (event) {
+$('#detalhesModal').on('show.bs.modal', function (event) {
 var button = $(event.relatedTarget);
 var id = button.data('whatever');
 var result = document.getElementById("detalhes");
@@ -68,7 +86,7 @@ xmlreq.send(null);
 var modal = $(this);
 })
 
-//AJAX Pesquisar
+//cria objeto AJAX Request
 function CriaRequest() {
      try{
          request = new XMLHttpRequest();
@@ -108,4 +126,25 @@ function CriaRequest() {
      };
      xmlreq.send(null);
  }
+
+//modal + AJAX serviços
+$('#servicosModal').on('show.bs.modal', function (event) {
+$('#detalhesModal').modal('toggle');
+var button = $(event.relatedTarget);
+var id = button.data('whatever');
+var result = document.getElementById("showServicos");
+var xmlreq = CriaRequest();
+xmlreq.open("GET", "servicos.php?serv=" + id, true);
+xmlreq.onreadystatechange = function(){
+   if (xmlreq.readyState == 4) {
+       if (xmlreq.status == 200) {
+           result.innerHTML = xmlreq.responseText;
+       }else{
+           result.innerHTML = "Erro: " + xmlreq.statusText;
+       }
+   }
+};
+xmlreq.send(null);
+var modal = $(this);
+})
 </script>
