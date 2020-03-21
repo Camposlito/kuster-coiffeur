@@ -15,7 +15,7 @@ if (is_null($row["niver_dia"])) {
 
 echo <<<EOT
 <div class="modal-header">
-  <h5 class="modal-title" id="detalhesModalLabel"><i class="fas fa-user-circle"></i> &nbsp; Informações do Cliente</h5>
+  <h4 class="modal-title" id="detalhesModalLabel"><i class="fas fa-info-circle"></i> &nbsp; Informações do Cliente</h4>
   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -25,49 +25,49 @@ echo <<<EOT
     <form>
       <div class="form-group row">
         <div class="col">
-          <label for="nome" class="col-form-label">Nome</label>
-          <input type="text" class="form-control" name="nome" placeholder="Não informado" value="{$row["nome"]}">
+          <label for="nome" class="col-form-label"><i class="fas fa-id-card"></i> Nome</label>
+          <input type="text" class="form-control" name="nome" placeholder="Não informado" value="{$row["nome"]}" readonly>
         </div>
       </div>
       <hr>
       <div class="form-group row">
         <div class="col">
-          <label for="email" class="col-form-label">E-mail</label>
-          <input type="text" class="form-control" name="email" placeholder="Não informado" value="{$row["email"]}">
+          <label for="email" class="col-form-label"><i class="fas fa-at"></i> E-mail</label>
+          <input type="text" class="form-control" name="email" placeholder="Não informado" value="{$row["email"]}" readonly>
         </div>
       </div>
       <hr>
       <div class="form-group row">
         <div class="col">
-          <label for="cell1">Celular (1)</label>
-          <input class="form-control" type="tell" name="cell1" placeholder="Não informado" value="{$row["cell1"]}">
+          <label for="cell1"><i class="fas fa-mobile-alt"></i> Celular (1)</label>
+          <input class="form-control" type="tell" name="cell1" placeholder="Não informado" value="{$row["cell1"]}" readonly>
         </div>
         <div class="col">
-          <label for="cell2">Celular (2)</label>
-          <input class="form-control" type="text" name="cell2" placeholder="Não informado" value="{$row["cell2"]}">
+          <label for="cell2"><i class="fas fa-mobile-alt"></i> Celular (2)</label>
+          <input class="form-control" type="text" name="cell2" placeholder="Não informado" value="{$row["cell2"]}" readonly>
         </div>
         <div class="col">
-          <label for="tell">Telefone Fixo</label>
-          <input class="form-control" type="text" name="tell" placeholder="Não informado" value="{$row["tell_fixo"]}">
+          <label for="tell"><i class="fas fa-phone-alt"></i> Telefone Fixo</label>
+          <input class="form-control" type="text" name="tell" placeholder="Não informado" value="{$row["tell_fixo"]}" readonly>
         </div>
       </div>
       <hr>
       <div class="form-group row">
         <div class="col">
           <label for="niver"><i class="fas fa-birthday-cake"></i> Aniversário</label>
-          <input class="form-control" type="text" name="niver" value="{$niver}" placeholder="Não informado">
+          <input class="form-control" type="text" name="niver" value="{$niver}" placeholder="Não informado" readonly>
         </div>
       </div>
       <hr>
       <div class="form-group row">
         <div class="col">
           <label for="servico"><i class="fas fa-cut"></i> Ultimo Serviço</label>
-          <input class="form-control" type="text" name="servico" value="{$ultimoServico}" placeholder="Não informado">
+          <input class="form-control-plaintext" type="text" name="servico" value="{$ultimoServico}" placeholder="Não informado" readonly>
         </div>
       </div>
       <div class="form-group row">
         <div class="col">
-          <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#servicosModal" data-whatever="{$row["id"]}">Ver Serviços Anteriores</button>
+          <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#servicosModal" data-whatever="{$row["id"]}">Ver Todos os Serviços</button>
         </div>
       </div>
 

@@ -5,7 +5,7 @@
   </div>
   <div class="row">
     <div class="col">
-      <h6> <i class="fas fa-stream"></i> Mostrando todos os registros (<?php echo contClientes(); ?>)</h4>
+      <h6> <i class="fas fa-stream"></i> Mostrando de <span id="min">1</span>  até <span id="max">7</span>  de  <b><?php echo contClientes(); ?></b>  registros</h6>
     </div>
     <div class="col">
 
@@ -33,9 +33,29 @@
       </tr>
     </thead>
     <tbody class="text-center" id="Resultado">
-      <?php ListarClientes(); ?>
+
     </tbody>
   </table>
+
+  <div class="row">
+    <div class="col">
+    </div>
+    <div class="col">
+    </div>
+    <div class="col">
+    </div>
+    <div class="col">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <button type="button" class="btn btn-dark" onclick="antePag()">Anterior</button>
+        </div>
+        <input type="text" class="text-center form-control" value="1" id="numPag" readonly>
+        <div class="input-group-append">
+          <button type="button" class="btn btn-dark" onclick="proxPag()">Proximo</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <!-- modal info_cliente -->
   <div class="modal fade" id="detalhesModal" tabindex="-1" role="dialog" aria-labelledby="detalhesModalLabel" aria-hidden="true">
@@ -58,6 +78,23 @@
 </div>
 
 <script>
+
+function proxPag(){
+  var pag = document.getElementById("numPag").value;
+  var prox = parseInt(pag) + 1;
+  listarClientes(prox);
+  document.getElementById("numPag").value = prox;
+}
+
+function antePag(){
+  var pag = document.getElementById("numPag").value;
+  var ante = parseInt(pag) - 1;
+  if (ante != 0) {
+    listarClientes(ante);
+    document.getElementById("numPag").value = ante;
+  }
+}
+
 //pesquisar com a tecla enter
 jQuery('#pesquisa').keypress(function(event){
 	var keycode = (event.keyCode ? event.keyCode : event.which);
@@ -106,6 +143,27 @@ function CriaRequest() {
      else
          return request;
  }
+
+ function listarClientes(pag){
+   var min = (pag * 7) - 6;
+   var max = pag * 7;
+   document.getElementById("max").innerHTML = max;
+   document.getElementById("min").innerHTML = min;
+   var result = document.getElementById("Resultado");
+   var xmlreq = CriaRequest();
+   xmlreq.open("GET", "clientes.php?pag=" + pag, true);
+   xmlreq.onreadystatechange = function(){
+       if (xmlreq.readyState == 4) {
+           if (xmlreq.status == 200) {
+               result.innerHTML = xmlreq.responseText;
+           }else{
+               result.innerHTML = "Erro: " + xmlreq.statusText;
+           }
+       }
+   };
+   xmlreq.send(null);
+ }
+
  //Função para enviar os dados AJAX de pesquisa
  function getDados() {
      var nome   = document.getElementById("pesquisa").value;

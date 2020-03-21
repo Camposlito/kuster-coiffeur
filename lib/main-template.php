@@ -11,7 +11,7 @@
     <script src="lib/jquery-3.4.1.min.js"></script>
     <script src="https://kit.fontawesome.com/4456f97d4f.js" crossorigin="anonymous"></script>
   </head>
-  <body>
+  <body onload="listarClientes(1)">
 
     <div class="wrapper">
       <!-- sidebar -->
