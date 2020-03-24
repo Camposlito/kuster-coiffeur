@@ -7,7 +7,7 @@
     <title>Kuster Coiffeur</title>
     <link rel="shortcut icon" href="lib/imagens/icon.png">
     <link rel="stylesheet" href="lib\bootstrap-4.4.1-dist\css\bootstrap.min.css">
-    <link rel="stylesheet" href="lib\estilo.css">
+    <link rel="stylesheet" href="lib\estilos.css">
     <script src="lib/jquery-3.4.1.min.js"></script>
     <script src="https://kit.fontawesome.com/4456f97d4f.js" crossorigin="anonymous"></script>
   </head>

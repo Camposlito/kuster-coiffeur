@@ -191,25 +191,33 @@ function sqlSelectFirst($tableName, $where = null)
 --------------------------------------
 */
 
+function temNome($nome){
+  try{
+      $sql = "SELECT * FROM info_cliente";
+      $conn = getConnection();
+      $resultado = $conn->query($sql);
+      if($resultado !== false) {
+          foreach($resultado as $row) {
+              if ($row["nome"] == $nome) {
+                return $row["id"];
+                die();
+              }
+          }
+          return null;
+      }
+      $conn = null;
+  }
+  catch(PDOException $e) {
+      echo $e->getMessage();
+  }
+}
+
 function getIdCliente($nome){
   $dado = array (
     "nome" => $nome
   );
   $row = sqlSelectFirst("info_cliente", $dado);
   return $row["id"];
-}
-
-function addCliente($nome, $email, $cell1, $cell2, $tell, $mes, $dia){
-  $dados = array(
-    "nome" => $nome,
-    "email" => $email,
-    "cell1" => $cell1,
-    "cell2" => $cell2,
-    "tell_fixo" => $tell,
-    "niver_mes" => $mes,
-    "niver_dia" => $dia
-  );
-  sqlInsert("info_cliente", $dados);
 }
 
 function addServico($id_cliente, $data, $descricao){
@@ -220,6 +228,7 @@ function addServico($id_cliente, $data, $descricao){
   );
   sqlInsert("servico", $dados);
 }
+
 
 function contNiverDia($dia, $mes){
   $sql = "SELECT * FROM info_cliente where niver_dia = '$dia' AND niver_mes = '$mes'";

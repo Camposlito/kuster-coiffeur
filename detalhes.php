@@ -22,40 +22,40 @@ echo <<<EOT
 </div>
 <div class="modal-body">
   <div class="container-fluid">
-    <form>
+    <form method="post" action="editar.php">
       <div class="form-group row">
         <div class="col">
-          <label for="nome" class="col-form-label"><i class="fas fa-id-card"></i> Nome</label>
-          <input type="text" class="form-control" name="nome" placeholder="Não informado" value="{$row["nome"]}" readonly>
+          <label for="nome" class="col-form-label" id="labelNomeEdit"><i class="fas fa-id-card"></i> Nome</label>
+          <input type="text" class="form-control" name="nome" id="dnome" placeholder="Não informado" value="{$row["nome"]}" readonly>
         </div>
       </div>
       <hr>
       <div class="form-group row">
         <div class="col">
           <label for="email" class="col-form-label"><i class="fas fa-at"></i> E-mail</label>
-          <input type="text" class="form-control" name="email" placeholder="Não informado" value="{$row["email"]}" readonly>
+          <input type="text" class="form-control" name="email" id="demail" placeholder="Não informado" value="{$row["email"]}" readonly>
         </div>
       </div>
       <hr>
       <div class="form-group row">
         <div class="col">
           <label for="cell1"><i class="fas fa-mobile-alt"></i> Celular (1)</label>
-          <input class="form-control" type="tell" name="cell1" placeholder="Não informado" value="{$row["cell1"]}" readonly>
+          <input class="form-control" type="tell" name="cell1" id="dcell1" placeholder="Não informado" value="{$row["cell1"]}" readonly>
         </div>
         <div class="col">
           <label for="cell2"><i class="fas fa-mobile-alt"></i> Celular (2)</label>
-          <input class="form-control" type="text" name="cell2" placeholder="Não informado" value="{$row["cell2"]}" readonly>
+          <input class="form-control" type="text" name="cell2" id="dcell2" placeholder="Não informado" value="{$row["cell2"]}" readonly>
         </div>
         <div class="col">
           <label for="tell"><i class="fas fa-phone-alt"></i> Telefone Fixo</label>
-          <input class="form-control" type="text" name="tell" placeholder="Não informado" value="{$row["tell_fixo"]}" readonly>
+          <input class="form-control" type="text" name="tell" id="dtell" placeholder="Não informado" value="{$row["tell_fixo"]}" readonly>
         </div>
       </div>
       <hr>
       <div class="form-group row">
         <div class="col">
           <label for="niver"><i class="fas fa-birthday-cake"></i> Aniversário</label>
-          <input class="form-control" type="text" name="niver" value="{$niver}" placeholder="Não informado" readonly>
+          <input class="form-control" type="text" name="niver" id="dniver" value="{$niver}" placeholder="Não informado" readonly>
         </div>
       </div>
       <hr>
@@ -63,6 +63,7 @@ echo <<<EOT
         <div class="col">
           <label for="servico"><i class="fas fa-cut"></i> Ultimo Serviço</label>
           <input class="form-control-plaintext" type="text" name="servico" value="{$ultimoServico}" placeholder="Não informado" readonly>
+          <input type="hidden" name="id_user" value="{$row["id"]}">
         </div>
       </div>
       <div class="form-group row">
@@ -71,12 +72,18 @@ echo <<<EOT
         </div>
       </div>
 
+      <div class="form-group row div-salvar">
+        <div class="col text-right">
+          <button type="submit" class="btn btn-success" disabled id="btn-salvar"><i class="fas fa-user-check"></i> Salvar</button>
+        </div>
+      </div>
+
     </form>
   </div>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-  <button type="button" class="btn btn-primary"><i class="fas fa-user-cog"></i> Editar</button>
+  <button type="button" class="btn btn-primary" id="btn-editar" onclick="editar()"><i class="fas fa-user-cog"></i> Editar</button>
   <button type="button" class="btn btn-danger"><i class="fas fa-user-slash"></i> Deletar</button>
 </div>
 

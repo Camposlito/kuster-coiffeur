@@ -79,6 +79,20 @@
 
 <script>
 
+
+function editar(){
+  document.getElementById("btn-salvar").disabled = false;
+  document.getElementById("btn-editar").disabled = true;
+
+  document.getElementById("dnome").readOnly = false;
+  document.getElementById("demail").readOnly = false;
+  document.getElementById("dcell1").readOnly = false;
+  document.getElementById("dcell2").readOnly = false;
+  document.getElementById("dtell").readOnly = false;
+  document.getElementById("dniver").readOnly = false;
+  document.getElementById("labelNomeEdit").innerHTML = '<i class="fas fa-id-card"></i> Nome *'
+}
+
 function proxPag(){
   var pag = document.getElementById("numPag").value;
   var prox = parseInt(pag) + 1;
@@ -96,7 +110,7 @@ function antePag(){
 }
 
 //pesquisar com a tecla enter
-jQuery('#pesquisa').keypress(function(event){
+$('#pesquisa').keypress(function(event){
 	var keycode = (event.keyCode ? event.keyCode : event.which);
 	if(keycode == '13'){
 		getDados();
@@ -121,7 +135,7 @@ xmlreq.onreadystatechange = function(){
 };
 xmlreq.send(null);
 var modal = $(this);
-})
+});
 
 //cria objeto AJAX Request
 function CriaRequest() {

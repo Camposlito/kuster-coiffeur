@@ -13,10 +13,24 @@ $dia = $_POST["dia"];
 $data = $_POST["data"];
 $descricao = $_POST["servico"];
 
+$id = temNome($nome);
 
-addCliente($nome, $email, $cell1, $cell2, $tell, $mes, $dia);
-$id_cliente = getIdCliente($nome);
-addServico($id_cliente, $data, $descricao);
+if ($id == null) {
+  $dados = array(
+    "nome" => $nome,
+    "email" => $email,
+    "cell1" => $cell1,
+    "cell2" => $cell2,
+    "tell_fixo" => $tell,
+    "niver_mes" => $mes,
+    "niver_dia" => $dia
+  );
+  sqlInsert("info_cliente", $dados);
+  addServico($id, $data, $descricao);
+  header("location:content.php?_location=cadastro");
+}else {
 
-header("location:content.php?_location=cadastro");
+}
+
+
 ?>
