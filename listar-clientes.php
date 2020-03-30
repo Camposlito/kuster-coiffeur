@@ -5,7 +5,7 @@
   </div>
   <div class="row">
     <div class="col">
-      <h6> <i class="fas fa-stream"></i> Mostrando de <span id="min">1</span>  até <span id="max">7</span>  de  <b><?php echo contClientes(); ?></b>  registros</h6>
+      <h6> <i class="fas fa-stream"></i> Mostrando de <span id="min">1</span>  até <span id="max">7</span>  de  <b id="totClientes"><?php echo contClientes(); ?></b>  registros</h6>
     </div>
     <div class="col">
 
@@ -75,22 +75,49 @@
     </div>
   </div>
 
+<!-- modal deletar -->
+  <div class="modal fade" id="deletarModal" tabindex="-1" role="dialog" aria-labelledby="deletarModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deletarModalLabel"><i class="fas fa-user-slash"></i> Deletar</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="deletar.php" method="post">
+          <div class="modal-body">
+            <div class="msg-delete"></div>
+            <input type="hidden" name="id_deletar" value="">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-dismiss="modal">Manter</button>
+            <button type="submit" class="btn btn-danger">Excluir</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <script>
-
+//
+// *ver todos os serviços (G)
+// *formulario editar cliente (P)
+// *novo serviço (G)
 
 function editar(){
   document.getElementById("btn-salvar").disabled = false;
   document.getElementById("btn-editar").disabled = true;
-
+  //habilitar formulário
   document.getElementById("dnome").readOnly = false;
   document.getElementById("demail").readOnly = false;
   document.getElementById("dcell1").readOnly = false;
   document.getElementById("dcell2").readOnly = false;
   document.getElementById("dtell").readOnly = false;
   document.getElementById("dniver").readOnly = false;
-  document.getElementById("labelNomeEdit").innerHTML = '<i class="fas fa-id-card"></i> Nome *'
+  //document.getElementById("labelNomeEdit").innerHTML = '<i class="fas fa-id-card"></i> Nome *'
 }
 
 function proxPag(){
@@ -116,6 +143,17 @@ $('#pesquisa').keypress(function(event){
 		getDados();
 	}
 });
+
+//Modal deletar Cliente
+$('#deletarModal').on('show.bs.modal', function (event) {
+  $('#detalhesModal').modal('hide');
+  var button = $(event.relatedTarget);
+  var str = button.data('whatever');
+  var modal = $(this);
+  var idNome = str.split("§");
+  modal.find('.msg-delete').text('Deseja excluir todos os dados de "' + idNome[1] + '" do registro?');
+  modal.find('.modal-body input').val(idNome[0]);
+})
 
 //Modal detalhes do cliente + AJAX de info_cliente
 $('#detalhesModal').on('show.bs.modal', function (event) {

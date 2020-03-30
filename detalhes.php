@@ -84,7 +84,7 @@ echo <<<EOT
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
   <button type="button" class="btn btn-primary" id="btn-editar" onclick="editar()"><i class="fas fa-user-cog"></i> Editar</button>
-  <button type="button" class="btn btn-danger"><i class="fas fa-user-slash"></i> Deletar</button>
+  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletarModal" data-whatever="{$row["id"]}§{$row["nome"]}"><i class="fas fa-user-slash"></i> Deletar</button>
 </div>
 
 EOT;

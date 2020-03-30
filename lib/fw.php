@@ -191,33 +191,16 @@ function sqlSelectFirst($tableName, $where = null)
 --------------------------------------
 */
 
-function temNome($nome){
-  try{
-      $sql = "SELECT * FROM info_cliente";
-      $conn = getConnection();
-      $resultado = $conn->query($sql);
-      if($resultado !== false) {
-          foreach($resultado as $row) {
-              if ($row["nome"] == $nome) {
-                return $row["id"];
-                die();
-              }
-          }
-          return null;
-      }
-      $conn = null;
+function getLastId(){
+  $sql = "SELECT * FROM info_cliente ORDER BY id DESC limit 1";
+  $conn = getConnection();
+  $resultado = $conn->query($sql);
+  if ($resultado !== false) {
+    foreach ($resultado as $row) {
+      return $row["id"];
+    }
   }
-  catch(PDOException $e) {
-      echo $e->getMessage();
-  }
-}
-
-function getIdCliente($nome){
-  $dado = array (
-    "nome" => $nome
-  );
-  $row = sqlSelectFirst("info_cliente", $dado);
-  return $row["id"];
+  $conn = null;
 }
 
 function addServico($id_cliente, $data, $descricao){
@@ -279,7 +262,7 @@ function ListarNiverAmanha($dia, $mes){
   $resultado = $conn->query($sql);
   if ($resultado !== false) {
     foreach ($resultado as $row) {
-      echo '<tr class="table-info">';
+      echo '<tr class="table-primary">';
       echo '  <th scope="row">';
       echo $row["niver_dia"];
       echo '</th>';

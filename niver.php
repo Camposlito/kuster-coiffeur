@@ -15,7 +15,7 @@ $dia_atual = date('d');
     </div>
   </div>
   <table class="table">
-    <thead>
+    <thead class="thead-light">
       <tr>
         <th>Dia</th>
         <th>Nome</th>
