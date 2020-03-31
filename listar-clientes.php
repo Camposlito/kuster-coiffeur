@@ -103,6 +103,10 @@
 
 <script>
 
+//
+// *ver todos os serviços (G)
+// *novo serviço (G)
+
 
 function editar(){
   document.getElementById("btn-salvar").disabled = false;

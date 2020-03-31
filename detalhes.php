@@ -43,7 +43,7 @@ echo <<<EOT
       <div class="form-group row">
         <div class="col">
           <label for="cell1"><i class="fas fa-mobile-alt"></i> Celular (1)</label>
-          <input class="form-control" type="tell" name="cell1" id="dcell1" placeholder="Não informado" value="{$row["cell1"]}" >
+          <input class="form-control" type="tell" name="cell1" id="dcell1" placeholder="Não informado" value="{$row["cell1"]}" readonly>
         </div>
         <div class="col">
           <label for="cell2"><i class="fas fa-mobile-alt"></i> Celular (2)</label>
