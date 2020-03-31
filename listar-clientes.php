@@ -102,10 +102,7 @@
 </div>
 
 <script>
-//
-// *ver todos os serviços (G)
-// *formulario editar cliente (P)
-// *novo serviço (G)
+
 
 function editar(){
   document.getElementById("btn-salvar").disabled = false;
@@ -117,7 +114,6 @@ function editar(){
   document.getElementById("dcell2").readOnly = false;
   document.getElementById("dtell").readOnly = false;
   document.getElementById("dniver").readOnly = false;
-  //document.getElementById("labelNomeEdit").innerHTML = '<i class="fas fa-id-card"></i> Nome *'
 }
 
 function proxPag(){
@@ -172,8 +168,28 @@ xmlreq.onreadystatechange = function(){
     }
 };
 xmlreq.send(null);
+
 var modal = $(this);
+
 });
+
+$('#detalhesModal').on('shown.bs.modal', function (event) {
+  $('#dcell1').mask('(00) 0 0000-0000');
+  $('#dniver').mask('00/00');
+  $('#dtell').mask('(00) 0000-0000');
+
+  var forms = document.getElementsByClassName('needs-validation');
+  var validation = Array.prototype.filter.call(forms, function(form) {
+    form.addEventListener('submit', function(event) {
+      if (form.checkValidity() === false) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      form.classList.add('was-validated');
+    }, false);
+  });
+
+})
 
 //cria objeto AJAX Request
 function CriaRequest() {

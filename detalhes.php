@@ -22,11 +22,14 @@ echo <<<EOT
 </div>
 <div class="modal-body">
   <div class="container-fluid">
-    <form method="post" action="editar.php">
+    <form class="needs-validation" novalidate method="post" action="editar.php">
       <div class="form-group row">
         <div class="col">
           <label for="nome" class="col-form-label" id="labelNomeEdit"><i class="fas fa-id-card"></i> Nome</label>
-          <input type="text" class="form-control" name="nome" id="dnome" placeholder="Não informado" value="{$row["nome"]}" readonly>
+          <input type="text" class="form-control" name="nome" id="dnome" placeholder="Não informado" value="{$row["nome"]}" readonly required>
+          <div class="invalid-feedback">
+            É necessário um nome válido.
+          </div>
         </div>
       </div>
       <hr>
@@ -40,7 +43,7 @@ echo <<<EOT
       <div class="form-group row">
         <div class="col">
           <label for="cell1"><i class="fas fa-mobile-alt"></i> Celular (1)</label>
-          <input class="form-control" type="tell" name="cell1" id="dcell1" placeholder="Não informado" value="{$row["cell1"]}" readonly>
+          <input class="form-control" type="tell" name="cell1" id="dcell1" placeholder="Não informado" value="{$row["cell1"]}" >
         </div>
         <div class="col">
           <label for="cell2"><i class="fas fa-mobile-alt"></i> Celular (2)</label>

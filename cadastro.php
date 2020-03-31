@@ -25,7 +25,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text">@</span>
                 </div>
-                <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com">
+                <input type="email" class="form-control" id="email" name="email" placeholder="nome@exemplo.com">
                 <div class="invalid-feedback" style="width: 100%;">
                   Digite um endereço de e-mail válido.
                 </div>
