@@ -104,7 +104,6 @@
 <script>
 
 //
-// *ver todos os serviços (G)
 // *novo serviço (G)
 
 

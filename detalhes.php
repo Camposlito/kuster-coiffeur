@@ -10,7 +10,11 @@ $ultimoServico = getUltimoServ($row["id"]);
 if (is_null($row["niver_dia"])) {
   $niver = "";
 }else {
-  $niver = $row["niver_dia"]."/".$row["niver_mes"];
+  if (strlen($row["niver_dia"])>1) {
+    $niver = $row["niver_dia"]."/".$row["niver_mes"];
+  }else {
+    $niver = "0".$row["niver_dia"]."/".$row["niver_mes"];
+  }
 }
 
 echo <<<EOT
