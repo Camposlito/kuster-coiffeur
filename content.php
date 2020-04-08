@@ -20,12 +20,6 @@ function mainContent(){
       include "niver.php";
       break;
 
-    case 'novo-servico':
-      include "novo-servico.php";
-      break;
-
-    
-
     default:
       //
       break;

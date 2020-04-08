@@ -75,12 +75,51 @@
     </div>
   </div>
 
+<!-- modal addServico -->
+  <div class="modal fade" id="addServicoModal" tabindex="-1" role="dialog" aria-labelledby="addServicoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="addServicoModalLabel"><i class="fas fa-folder-plus"></i> Novo Serviço</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="novo-servico.php" method="post">
+          <div class="modal-body">
+            <div class="container">
+              <div class="row">
+                <h5><i class="fas fa-id-badge"></i> &nbsp; </h5> <h5 class="msg-add"></h5>
+              </div>
+              <input type="hidden" name="id_addS" id="id_addS" class="addId_cliente form-control" value="">
+              <hr>
+              <div class="row">
+                <div class="col">
+                  <label for="data">Data</label>
+                  <input type="text" class="form-control" name="addData" id="addData" placeholder="__/__/____" value="" >
+                </div>
+                <div class="col">
+                  <label for="servico">Descrição</label>
+                  <input type="text" class="form-control" name="addServico" id="addServico" placeholder="" value="" >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-success">Concluir</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
 <!-- modal deletar -->
   <div class="modal fade" id="deletarModal" tabindex="-1" role="dialog" aria-labelledby="deletarModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="deletarModalLabel"><i class="fas fa-user-slash"></i> Deletar</h5>
+          <h4 class="modal-title" id="deletarModalLabel"><i class="fas fa-user-slash"></i> Deletar</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -103,13 +142,13 @@
 
 <script>
 
-//
-// *novo serviço (G)
-
-
 function editar(){
+  //toggle botões
   document.getElementById("btn-salvar").disabled = false;
   document.getElementById("btn-editar").disabled = true;
+  document.getElementById("btn-vts").disabled = true;
+  document.getElementById("btn-addS").disabled = true;
+  document.getElementById("btn-del").disabled = true;
   //habilitar formulário
   document.getElementById("dnome").readOnly = false;
   document.getElementById("demail").readOnly = false;
@@ -152,7 +191,25 @@ $('#deletarModal').on('show.bs.modal', function (event) {
   var idNome = str.split("§");
   modal.find('.msg-delete').text('Deseja excluir todos os dados de "' + idNome[1] + '" do registro?');
   modal.find('.modal-body input').val(idNome[0]);
-})
+});
+
+//Modal add Serviço
+$('#addServicoModal').on('show.bs.modal', function (event) {
+  $('#detalhesModal').modal('hide');
+  var button = $(event.relatedTarget);
+  var str = button.data('whatever');
+  var modal = $(this);
+  var idNome = str.split("§");
+  modal.find('.msg-add').text('Adicionar serviço ao cliente "' + idNome[1] + '"');
+  modal.find('.addId_cliente').val(idNome[0]);
+});
+$('#addServicoModal').on('shown.bs.modal', function () {
+  $('#addData').mask('00/00/0000');
+});
+$('#addServicoModal').on('hide.bs.modal', function () {
+  document.getElementById('addData').value = "";
+  document.getElementById('addServico').value = "";
+});
 
 //Modal detalhes do cliente + AJAX de info_cliente
 $('#detalhesModal').on('show.bs.modal', function (event) {

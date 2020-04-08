@@ -27,9 +27,6 @@
             <a href="content.php?_location=cadastro"><i class="fas fa-pen"></i> &nbsp; Cadastrar Cliente</a>
           </li>
           <li>
-            <a href="content.php?_location=novo-servico"><i class="fas fa-folder-plus"></i> &nbsp; Novo Serviço</a>
-          </li>
-          <li>
             <a href="content.php?_location=listar-clientes"><i class="far fa-address-book"></i> &nbsp; Lista de Clientes</a>
           </li>
           <li>

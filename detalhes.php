@@ -75,7 +75,8 @@ echo <<<EOT
       </div>
       <div class="form-group row">
         <div class="col">
-          <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#servicosModal" data-whatever="{$row["id"]}">Ver Todos os Serviços</button>
+          <button type="button" id="btn-vts" class="btn btn-dark" data-toggle="modal" data-target="#servicosModal" data-whatever="{$row["id"]}"><i class="fas fa-clipboard-list"></i> Ver Todos os Serviços</button>
+          <button type="button" id="btn-addS" class="btn btn-info" data-toggle="modal" data-target="#addServicoModal" data-whatever="{$row["id"]}§{$row["nome"]}"><i class="fas fa-plus-circle"></i> Adicionar Serviço</button>
         </div>
       </div>
 
@@ -91,7 +92,7 @@ echo <<<EOT
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
   <button type="button" class="btn btn-primary" id="btn-editar" onclick="editar()"><i class="fas fa-user-cog"></i> Editar</button>
-  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletarModal" data-whatever="{$row["id"]}§{$row["nome"]}"><i class="fas fa-user-slash"></i> Deletar</button>
+  <button type="button" id="btn-del" class="btn btn-danger" data-toggle="modal" data-target="#deletarModal" data-whatever="{$row["id"]}§{$row["nome"]}"><i class="fas fa-user-slash"></i> Deletar</button>
 </div>
 
 EOT;
