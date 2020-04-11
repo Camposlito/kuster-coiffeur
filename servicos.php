@@ -46,7 +46,7 @@ echo <<<EOT
 </div>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-secondary" data-dismiss="modal">Voltar</button>
+  <button type="button" onclick="voltarModalS()" class="btn btn-secondary" data-toggle="modal" data-target="#detalhesModal" data-whatever="{$id}">Voltar</button>
 </div>
 
 EOT;

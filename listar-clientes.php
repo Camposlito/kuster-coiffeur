@@ -332,5 +332,9 @@ xmlreq.onreadystatechange = function(){
 };
 xmlreq.send(null);
 var modal = $(this);
-})
+});
+
+function voltarModalS(){
+  $('#servicosModal').modal('hide');
+}
 </script>
