@@ -165,6 +165,10 @@ ul ul a {
     DIVERSOS
 ----------------------------------------------------- */
 
+.modal {
+  overflow-y: auto !important;
+}
+
 button:disabled{
   pointer-events: none;
 }

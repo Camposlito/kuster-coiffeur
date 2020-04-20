@@ -23,6 +23,7 @@ echo <<<EOT
     <tr>
       <th scope="col">Data</th>
       <th scope="col">Descrição</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
@@ -30,12 +31,15 @@ EOT;
 
 if ($resultado !== false) {
   foreach ($resultado as $row) {
-    echo <<<EOT
-    <tr>
-      <th scope="row">{$row["data"]}</th>
-      <td>{$row["descricao"]}</td>
-    </tr>
+    if ($row["data"] != "" && $row["descricao"] != "") {
+      echo <<<EOT
+      <tr>
+        <th scope="row">{$row["data"]}</th>
+        <td>{$row["descricao"]}</td>
+        <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delServModal" data-whatever="{$row["id_servico"]}§{$row["data"]}"><i class="fas fa-trash-alt"></i></button></td>
+      </tr>
 EOT;
+    }
   }
 }
 $conn = null;
