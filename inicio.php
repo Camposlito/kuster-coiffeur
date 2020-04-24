@@ -1,4 +1,4 @@
 <div class="container kuster-logo">
-  <span class="text1">kuster</span>
-  <span class="text2">Coiffeur</span>
+  <span class="text1">bem-vindo</span>
+  <span class="text2">Paulo Kuster</span>
 </div>

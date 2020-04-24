@@ -31,7 +31,7 @@ EOT;
 
 if ($resultado !== false) {
   foreach ($resultado as $row) {
-    if ($row["data"] != "" && $row["descricao"] != "") {
+    if ($row["data"] != "" || $row["descricao"] != "") {
       echo <<<EOT
       <tr>
         <th scope="row">{$row["data"]}</th>

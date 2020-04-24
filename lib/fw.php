@@ -191,6 +191,13 @@ function sqlSelectFirst($tableName, $where = null)
 --------------------------------------
 */
 
+function apagarNull(){
+  $sql = "DELETE FROM servico WHERE descricao IS NULL AND data IS NULL";
+  $conn = getConnection();
+  $resultado = $conn->query($sql);
+  $conn = null;
+}
+
 function getLastId(){
   $sql = "SELECT * FROM info_cliente ORDER BY id DESC limit 1";
   $conn = getConnection();
@@ -286,7 +293,7 @@ function ListarNiverAmanha($dia, $mes){
 
 function ListarNiverMes($dia, $mes){
   $amanha = $dia + 1;
-  $sql = "SELECT * FROM info_cliente WHERE niver_mes = '$mes'";
+  $sql = "SELECT * FROM info_cliente WHERE niver_mes = '$mes' ORDER BY niver_dia";
   $conn = getConnection();
   $resultado = $conn->query($sql);
   if ($resultado !== false) {

@@ -6,7 +6,7 @@ $max = $pag * 7;
 $min = $max - 7;
 $cont = 0;
 
-$sql = "SELECT * FROM info_cliente";
+$sql = "SELECT * FROM info_cliente ORDER BY nome ";
 $conn = getConnection();
 $resultado = $conn->query($sql);
 if ($resultado !== false) {
@@ -39,4 +39,4 @@ if ($resultado !== false) {
 }
 $conn = null;
 
- ?> 
+ ?>

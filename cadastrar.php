@@ -23,8 +23,13 @@ $dados = array(
   "niver_dia" => $dia
 );
 sqlInsert("info_cliente", $dados);
-$id = getLastId();
-addServico($id, $data, $descricao);
+if ($data != "" || $descricao != "") {
+  $id = getLastId();
+  addServico($id, $data, $descricao);
+}
+
+apagarNull();
+
 header("location:content.php?_location=cadastro");
 
 

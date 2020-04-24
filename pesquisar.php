@@ -8,7 +8,7 @@ if (isset($_GET["pesquisa"])) {
     $sql = "SELECT * FROM info_cliente";
   }else {
     $nome .= "%";
-    $sql = "SELECT * FROM info_cliente WHERE nome LIKE '$nome'";
+    $sql = "SELECT * FROM info_cliente WHERE nome LIKE '$nome' ORDER BY nome";
   }
   $resultado = $conn->query($sql);
   if ($resultado !== false) {

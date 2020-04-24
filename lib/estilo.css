@@ -196,7 +196,7 @@ button:disabled{
   margin-bottom: 0px;
   background: #fafafa;
   position: relative;
-  animation: text 3s 1;
+  animation: text 2s 1;
 }
 
 .text2{
