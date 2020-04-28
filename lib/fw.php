@@ -191,13 +191,6 @@ function sqlSelectFirst($tableName, $where = null)
 --------------------------------------
 */
 
-function apagarNull(){
-  $sql = "DELETE FROM servico WHERE descricao IS NULL AND data IS NULL";
-  $conn = getConnection();
-  $resultado = $conn->query($sql);
-  $conn = null;
-}
-
 function getLastId(){
   $sql = "SELECT * FROM info_cliente ORDER BY id DESC limit 1";
   $conn = getConnection();

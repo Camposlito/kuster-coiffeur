@@ -28,9 +28,6 @@ if ($data != "" || $descricao != "") {
   addServico($id, $data, $descricao);
 }
 
-apagarNull();
-
 header("location:content.php?_location=cadastro");
-
 
 ?>

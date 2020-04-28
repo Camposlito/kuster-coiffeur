@@ -2,7 +2,8 @@
 include "lib/fw.php";
 
 if (isset($_GET["pesquisa"])) {
-  $nome = $_GET["pesquisa"];
+  $nome = "%";
+  $nome .= $_GET["pesquisa"];
   $conn = getConnection();
   if (empty($nome)) {
     $sql = "SELECT * FROM info_cliente";

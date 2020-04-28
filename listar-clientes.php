@@ -5,7 +5,7 @@
   </div>
   <div class="row">
     <div class="col">
-      <h6> <i class="fas fa-stream"></i> Mostrando de <span id="min">1</span>  até <span id="max">7</span>  de  <b id="totClientes"><?php echo contClientes(); ?></b>  registros</h6>
+      <h6> <i class="fas fa-stream"></i> Mostrando de <span id="min">1</span>  até <span id="max">7</span>  de  <b id="totClientes"> <?php echo contClientes(); ?> </b>  registros</h6>
     </div>
     <div class="col">
 
@@ -37,7 +37,7 @@
     </tbody>
   </table>
 
-  <div class="row">
+  <div class="row" id="navPag">
     <div class="col">
     </div>
     <div class="col">
@@ -183,10 +183,14 @@ function editar(){
 }
 
 function proxPag(){
-  var pag = document.getElementById("numPag").value;
-  var prox = parseInt(pag) + 1;
-  listarClientes(prox);
-  document.getElementById("numPag").value = prox;
+  var m = document.getElementById("max").innerHTML;
+  var tot = <?php echo contClientes(); ?>;
+  if (m < tot) {
+    var pag = document.getElementById("numPag").value;
+    var prox = parseInt(pag) + 1;
+    listarClientes(prox);
+    document.getElementById("numPag").value = prox;
+  }
 }
 
 function antePag(){
@@ -330,22 +334,28 @@ function CriaRequest() {
  //Função para enviar os dados AJAX de pesquisa
  function getDados() {
      var nome   = document.getElementById("pesquisa").value;
-     var result = document.getElementById("Resultado");
-     var xmlreq = CriaRequest();
-     xmlreq.open("GET", "pesquisar.php?pesquisa=" + nome, true);
-     // Atribui uma função para ser executada sempre que houver uma mudança de estado
-     xmlreq.onreadystatechange = function(){
-         // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4)
-         if (xmlreq.readyState == 4) {
-             // Verifica se o arquivo foi encontrado com sucesso
-             if (xmlreq.status == 200) {
-                 result.innerHTML = xmlreq.responseText;
-             }else{
-                 result.innerHTML = "Erro: " + xmlreq.statusText;
-             }
-         }
-     };
-     xmlreq.send(null);
+     if (nome != "") {
+       var result = document.getElementById("Resultado");
+       var xmlreq = CriaRequest();
+       xmlreq.open("GET", "pesquisar.php?pesquisa=" + nome, true);
+       // Atribui uma função para ser executada sempre que houver uma mudança de estado
+       xmlreq.onreadystatechange = function(){
+           // Verifica se foi concluído com sucesso e a conexão fechada (readyState=4)
+           if (xmlreq.readyState == 4) {
+               // Verifica se o arquivo foi encontrado com sucesso
+               if (xmlreq.status == 200) {
+                   result.innerHTML = xmlreq.responseText;
+               }else{
+                   result.innerHTML = "Erro: " + xmlreq.statusText;
+               }
+           }
+       };
+       xmlreq.send(null);
+       $('#navPag').hide();
+     }else {
+       listarClientes(1);
+       $('#navPag').show();
+     }
  }
 
 //modal + AJAX serviços
@@ -367,7 +377,7 @@ xmlreq.onreadystatechange = function(){
 };
 xmlreq.send(null);
 var modal = $(this);
- 
+
 });
 
 function voltarModalS(){
