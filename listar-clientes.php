@@ -162,6 +162,41 @@
   </div>
 </div>
 
+<!-- modal editar servico -->
+<div class="modal fade" id="editServModal" tabindex="-1" role="dialog" aria-labelledby="editServModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="editServModalLabel"><i class="fas fa-user-cog"></i> Editar Serviço</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="editar-servico.php" method="post">
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="form-group row msg-data">
+              <label class="col-form-label" for="data_edit_serv">Data*</label>
+              <input class="form-control" type="text" id="data_edit_serv" name="data_edit_serv" placeholder="__/__/____" value="">
+            </div>
+            <div class="form-group row msg-desc">
+              <label class="col-form-label" for="desc_edit_serv">Descrição*</label>
+              <input class="form-control" type="text" name="desc_edit_serv" value="">
+            </div>
+            <div class="form-group msg-id">
+              <input class="form-control" type="hidden" name="id_edit_serv" value="">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-success">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 </div>
 
 <script>
@@ -173,7 +208,7 @@ function editar(){
   document.getElementById("btn-vts").disabled = true;
   document.getElementById("btn-addS").disabled = true;
   document.getElementById("btn-del").disabled = true;
-  //habilitar formulário
+  //habilitar formulário 
   document.getElementById("dnome").readOnly = false;
   document.getElementById("demail").readOnly = false;
   document.getElementById("dcell1").readOnly = false;
@@ -217,7 +252,7 @@ $('#deletarModal').on('show.bs.modal', function (event) {
   var str = button.data('whatever');
   var modal = $(this);
   var idNome = str.split("§");
-  modal.find('.msg-delete').text('Deseja excluir todos os dados de "' + idNome[1] + '" do registro?');
+  modal.find('.msg-delete').text('Deseja excluir TODOS os dados de "' + idNome[1] + '" do registro?');
   modal.find('.modal-body input').val(idNome[0]);
 });
 
@@ -228,8 +263,23 @@ $('#delServModal').on('show.bs.modal', function (event) {
   var str = button.data('whatever');
   var modal = $(this);
   var idData = str.split("§");
-  modal.find('.msg-delete').text('Deseja excluir o serviço do dia "' + idData[1] + '" do registro?');
+  modal.find('.msg-delete').text('Deseja excluir apenas o serviço do dia "' + idData[1] + '" do registro?');
   modal.find('.modal-body input').val(idData[0]);
+});
+
+//Modal editar Servico
+$('#editServModal').on('show.bs.modal', function (event) {
+  $('#servicosModal').modal('hide');
+  var button = $(event.relatedTarget);
+  var str = button.data('whatever');
+  var modal = $(this);
+  var idDataDesc = str.split("§");
+  modal.find('.msg-data input').val(idDataDesc[1]);
+  modal.find('.msg-desc input').val(idDataDesc[2]);
+  modal.find('.msg-id input').val(idDataDesc[0]);
+});
+$('#editServModal').on('shown.bs.modal', function () {
+  $('#data_edit_serv').mask('00/00/0000');
 });
 
 //Modal add Serviço

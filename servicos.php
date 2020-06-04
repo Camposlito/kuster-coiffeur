@@ -36,7 +36,10 @@ if ($resultado !== false) {
       <tr>
         <th scope="row">{$row["data"]}</th>
         <td>{$row["descricao"]}</td>
-        <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delServModal" data-whatever="{$row["id_servico"]}§{$row["data"]}"><i class="fas fa-trash-alt"></i></button></td>
+        <td class="text-right">
+          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delServModal" data-whatever="{$row["id_servico"]}§{$row["data"]}"><i class="fas fa-trash-alt"></i></button>
+          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editServModal" data-whatever="{$row["id_servico"]}§{$row["data"]}§{$row["descricao"]}"><i class="fas fa-pencil-alt"></i></button>
+        </td> 
       </tr>
 EOT;
     }
