@@ -9,6 +9,7 @@ $tell = $_POST["telefone"];
 
 $mes = $_POST["mes"];
 $dia = $_POST["dia"];
+$dia += 0;
 
 $data = $_POST["data"];
 $descricao = $_POST["servico"];

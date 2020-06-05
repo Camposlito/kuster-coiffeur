@@ -11,6 +11,7 @@ $niver = $_POST["niver"];
 
 $data = explode("/", $niver);
 $dia = $data[0];
+$dia += 0;
 $mes = $data[1];
 
 $dados = array(
@@ -26,6 +27,8 @@ $key = array(
   "id" => $id
 );
 sqlUpdate("info_cliente", $dados, $key);
+
+addZero();
 
 header("location:content.php?_location=listar-clientes");
 ?>

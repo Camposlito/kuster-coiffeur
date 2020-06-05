@@ -214,6 +214,7 @@ function addServico($id_cliente, $data, $descricao){
 
 
 function contNiverDia($dia, $mes){
+  $dia += 0;
   $sql = "SELECT * FROM info_cliente where niver_dia = '$dia' AND niver_mes = '$mes'";
   $conn = getConnection();
   $resultado = $conn->query($sql);
@@ -230,6 +231,7 @@ function contClientes(){
 }
 
 function ListarNiverHoje($dia, $mes){
+  $dia += 0;
   $sql = "SELECT * FROM info_cliente WHERE niver_dia = '$dia' AND niver_mes = '$mes'";
   $conn = getConnection();
   $resultado = $conn->query($sql);
@@ -402,5 +404,14 @@ function getUltimoServ($id){
   }
 }
 
+function addZero(){
+  $sql = "SELECT * FROM info_cliente";
+  $conn = getConnection();
+  $resultado = $conn->query($sql);
+  foreach ($resultado as $row) {
+    $row["niver_dia"] += 0;
+  }
+  $conn = null;
+}
 
- ?>
+?>
