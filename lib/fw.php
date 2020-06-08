@@ -54,6 +54,11 @@ function getConnection()
     return $dbh;
 }
 
+function dateToSQL($date)
+{
+  return $date->format("Y-m-d");
+}
+
 function sqlInsert($tableName, $newRecord)
 {
     $sep = "";
@@ -413,5 +418,3 @@ function addZero(){
   }
   $conn = null;
 }
-
-?>

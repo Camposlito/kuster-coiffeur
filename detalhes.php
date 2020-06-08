@@ -2,18 +2,18 @@
 include "lib/fw.php";
 
 $id = $_GET["det"];
-$dado = array (
+$dado = array(
   "id" => $id
 );
 $row = sqlSelectFirst("info_cliente", $dado);
 $ultimoServico = getUltimoServ($row["id"]);
-if (is_null($row["niver_dia"])) {
+if (is_null($row["niver_dia"]) || $row["niver_dia"] == 0) {
   $niver = "";
-}else {
-  if (strlen($row["niver_dia"])>1) {
-    $niver = $row["niver_dia"]."/".$row["niver_mes"];
-  }else {
-    $niver = "0".$row["niver_dia"]."/".$row["niver_mes"];
+} else {
+  if (strlen($row["niver_dia"]) > 1) {
+    $niver = $row["niver_dia"] . "/" . $row["niver_mes"];
+  } else {
+    $niver = "0" . $row["niver_dia"] . "/" . $row["niver_mes"];
   }
 }
 
@@ -40,7 +40,7 @@ echo <<<EOT
       <div class="form-group row">
         <div class="col">
           <label for="email" class="col-form-label"><i class="fas fa-at"></i> E-mail</label>
-          <input type="text" class="form-control" name="email" id="demail" placeholder="Não informado" value="{$row["email"]}" readonly>
+          <input type="email" class="form-control" name="email" id="demail" placeholder="Não informado" value="{$row["email"]}" readonly>
         </div>
       </div>
       <hr>
@@ -96,5 +96,3 @@ echo <<<EOT
 </div>
 
 EOT;
-
-?>

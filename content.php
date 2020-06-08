@@ -24,6 +24,10 @@ function mainContent(){
       include "profile.php";
       break;
 
+    case 'login':
+      include "login-adm.php";
+      break;
+
     default:
       //
       break;
@@ -31,4 +35,3 @@ function mainContent(){
 }
 
 include "lib/main-template.php";
- ?>
