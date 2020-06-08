@@ -19,6 +19,10 @@ function mainContent(){
     case 'niver':
       include "niver.php";
       break;
+    
+    case 'profile':
+      include "profile.php";
+      break;
 
     default:
       //

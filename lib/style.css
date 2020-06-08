@@ -121,6 +121,39 @@ ul ul a {
     background: #6d7fcc;
 }
 
+ul.CTAs {
+    padding: 20px;
+}
+
+ul.CTAs a {
+    text-align: center;
+    font-size: 0.9em !important;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+a.gerenciar {
+    background: #6d7fcc;
+    color: #fff;
+}
+
+a.gerenciar:hover{
+    background: #fff;
+    color: #7386D5;
+}
+
+a.ajuda {
+    background: #6d7fcc;
+    color: #fff;
+}
+
+a.ajuda:hover{
+    background: #fff;
+    color: #7386D5;
+}
+
+
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
@@ -217,4 +250,8 @@ button:disabled{
     letter-spacing: 8px;
     margin-bottom: -40px;
   }
+}
+
+#img-profile {
+    font-size: 40px;
 }

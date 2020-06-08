@@ -7,7 +7,7 @@
     <title>Kuster Coiffeur</title>
     <link rel="shortcut icon" href="lib/imagens/icon.png">
     <link rel="stylesheet" href="lib\bootstrap-4.4.1-dist\css\bootstrap.min.css">
-    <link rel="stylesheet" href="lib\estilo.css">
+    <link rel="stylesheet" href="lib\style.css">
     <script src="lib/jquery-3.4.1.min.js"></script>
     <script src="https://kit.fontawesome.com/4456f97d4f.js" crossorigin="anonymous"></script>
   </head>
@@ -33,18 +33,37 @@
             <a href="content.php?_location=niver"><i class="fas fa-birthday-cake"></i> &nbsp; Aniversários &nbsp;<span class="badge badge-dark"> <?php contNiverDia(date('d'), date('m')); ?> </span></a>
           </li>
         </ul>
+        <ul class="list-unstyled CTAs">
+          <li>
+            <a href="#" class="gerenciar">Gerenciar</a>
+          </li>
+          <li>
+            <a href="#" class="ajuda">Ajuda</a>
+          </li>
+        </ul>
       </nav>
 
       <!-- conteudo da pagina -->
       <div id="content">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
+          <div class="container-fluid">
 
-                <button type="button" id="sidebarCollapse" class="btn btn-info">
-                    <i class="fas fa-align-left"></i>
-                    <span> Opções</span>
-                </button>
+           <button type="button" id="sidebarCollapse" class="btn btn-info">
+             <i class="fas fa-bars"></i>
+             <span></span>
+           </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+             <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item">
+                 <a class="nav-link" href="content.php?_location=profile" aria-label="Google Apps">
+                   <i id="img-profile" class="fas fa-user-circle"></i>
+                 </a>
+                </li>
+              </ul>
             </div>
+
+          </div>
         </nav>
 
         <?php mainContent(); ?>
