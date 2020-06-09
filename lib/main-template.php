@@ -8,12 +8,12 @@
   <title>Kuster Coiffeur</title>
   <link rel="shortcut icon" href="lib/imagens/icon.png">
   <link rel="stylesheet" href="lib\bootstrap-4.4.1-dist\css\bootstrap.min.css">
-  <link rel="stylesheet" href="lib\estilo.css">
+  <link rel="stylesheet" href="lib\estilos.css">
   <script src="lib/jquery-3.4.1.min.js"></script>
   <script src="https://kit.fontawesome.com/4456f97d4f.js" crossorigin="anonymous"></script>
 </head>
 
-<body onload="listarClientes(1)">
+<body id="body-log" onload="listarClientes(1)">
   <?php
   $_SESSION['status'] = false;
   ?>
@@ -68,7 +68,7 @@
                 </li>
               <?php else : ?>
                 <li class="nav-item">
-                  <a class="nav-link" href="content.php?_location=login-adm">Entrar</a>
+                  <a class="nav-link" href="content.php?_location=login">Entrar</a>
                 </li>
               <?php endif; ?>
             </ul>
@@ -77,7 +77,10 @@
         </div>
       </nav>
 
-      <?php mainContent(); ?>
+
+      <?php mainContent(); //index -> content -> main-template(mainContent(include)) 
+      ?>
+
     </div>
 
   </div>

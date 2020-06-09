@@ -28,7 +28,4 @@ $key = array(
 );
 sqlUpdate("info_cliente", $dados, $key);
 
-//addZero();
-
 header("location:content.php?_location=listar-clientes");
-?>
