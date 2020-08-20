@@ -181,16 +181,6 @@ function addServico($id_cliente, $data, $descricao)
 }
 
 
-function contNiverDia($dia, $mes)
-{
-  $dia += 0;
-  $sql = "SELECT * FROM info_cliente where niver_dia = '$dia' AND niver_mes = '$mes'";
-  $conn = getConnection();
-  $resultado = $conn->query($sql);
-  echo (int) $resultado->rowCount();
-  $conn = null;
-}
-
 function contClientes()
 {
   $sql = "SELECT * FROM info_cliente";
@@ -200,10 +190,28 @@ function contClientes()
   $conn = null;
 }
 
+function contNiverDia($dia, $mes)
+{
+  $dia += 0;
+  //FIXME: trocar $sql e $diap
+  $diap = "0" . $dia;
+  $sql = "SELECT * FROM info_cliente WHERE niver_dia = '$dia' AND niver_mes = '$mes' OR niver_dia = '$diap' AND niver_mes = '$mes'";
+
+  //$sql = "SELECT * FROM info_cliente where niver_dia = '$dia' AND niver_mes = '$mes'";
+  $conn = getConnection();
+  $resultado = $conn->query($sql);
+  echo (int) $resultado->rowCount();
+  $conn = null;
+}
+
 function ListarNiverHoje($dia, $mes)
 {
   $dia += 0;
-  $sql = "SELECT * FROM info_cliente WHERE niver_dia = '$dia' AND niver_mes = '$mes'";
+  //FIXME: trocar $sql e $diap
+  $diap = "0" . $dia;
+  $sql = "SELECT * FROM info_cliente WHERE niver_dia = '$dia' AND niver_mes = '$mes' OR niver_dia = '$diap' AND niver_mes = '$mes'";
+
+  //$sql = "SELECT * FROM info_cliente WHERE niver_dia = '$dia' AND niver_mes = '$mes'";
   $conn = getConnection();
   $resultado = $conn->query($sql);
   if ($resultado !== false) {
@@ -231,7 +239,11 @@ function ListarNiverHoje($dia, $mes)
 function ListarNiverAmanha($dia, $mes)
 {
   $dia = $dia + 1;
-  $sql = "SELECT * FROM info_cliente WHERE niver_dia = '$dia' AND niver_mes = '$mes'";
+  //FIXME: trocar $sql e $diap
+  $diap = "0" . $dia;
+  $sql = "SELECT * FROM info_cliente WHERE niver_dia = '$dia' AND niver_mes = '$mes' OR niver_dia = '$diap' AND niver_mes = '$mes'";
+
+  //$sql = "SELECT * FROM info_cliente WHERE niver_dia = '$dia' AND niver_mes = '$mes'";
   $conn = getConnection();
   $resultado = $conn->query($sql);
   if ($resultado !== false) {
@@ -379,3 +391,4 @@ function getUltimoServ($id)
     return $dia . "/" . $mes . "/" . $ano . " - " . $servico;
   }
 }
+
