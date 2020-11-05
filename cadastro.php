@@ -134,11 +134,34 @@
         </div>
         <hr class="mb-4">
 
-        <button class="btn btn-success btn-lg btn-block" type="submit">Pronto</button>
+        <button class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#confirmarModal">Pronto</button>
+        <!-- <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delServModal" data-whatever="{$row["id_servico"]}§{$row["data"]}"><i class="fas fa-trash-alt"></i></button> -->
+      
+        <!-- modal confirmar cadastro -->
+        <div class="modal fade" id="confirmarModal" tabindex="-1" role="dialog" aria-labelledby="confirmarModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" id="confirmarModalLabel"><i class="fas fa-user-slash"></i> Confirmar</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <div class="msg-delete"></div>
+                  <input type="hidden" name="id_deletar" value="">
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-success" data-dismiss="modal">Manter</button>
+                  <button type="submit" class="btn btn-danger">Excluir</button>
+                </div>
+            </div>
+          </div>
+        </div>
+
       </form>
     </div>
   </div>
-
 
 </div>
 
@@ -169,5 +192,15 @@
     $('#data').mask('00/00/0000');
     $('#dia').mask('00');
     $('.telefone').mask('(00) 0000-0000');
+  });
+
+  //modal confirmar cadastro
+  $('#confirmarModal').on('show.bs.modal', function(event) {
+    var button = $(event.relatedTarget);
+    var str = button.data('whatever');
+    var modal = $(this);
+    var idNome = str.split("§");
+    modal.find('.msg-delete').text('Deseja excluir TODOS os dados de "' + idNome[1] + '" do registro?');
+    modal.find('.modal-body input').val(idNome[0]);
   });
 </script>
