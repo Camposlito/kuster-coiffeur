@@ -172,6 +172,13 @@ function getLastId()
 
 function addServico($id_cliente, $data, $descricao)
 {
+
+  $dataDMA = explode("/", $data);
+  if (strlen($dataDMA[2]) < 4) {
+    $dataDMA[2] = "20" . $dataDMA[2];
+  }
+  $data = $dataDMA[0] . "/" . $dataDMA[1] . "/" . $dataDMA[2];
+
   $dados = array(
     "id_cliente" => $id_cliente,
     "data" => $data,
@@ -193,7 +200,7 @@ function contClientes()
 function contNiverDia($dia, $mes)
 {
   $dia += 0;
-  //FIXME: trocar $sql e $diap
+  //TODO: trocar $sql e $diap - achar alternativa para achar dias de aniversário
   $diap = "0" . $dia;
   $sql = "SELECT * FROM info_cliente WHERE niver_dia = '$dia' AND niver_mes = '$mes' OR niver_dia = '$diap' AND niver_mes = '$mes'";
 
@@ -207,7 +214,7 @@ function contNiverDia($dia, $mes)
 function ListarNiverHoje($dia, $mes)
 {
   $dia += 0;
-  //FIXME: trocar $sql e $diap
+  //TODO: trocar $sql e $diap
   $diap = "0" . $dia;
   $sql = "SELECT * FROM info_cliente WHERE niver_dia = '$dia' AND niver_mes = '$mes' OR niver_dia = '$diap' AND niver_mes = '$mes'";
 
@@ -239,7 +246,7 @@ function ListarNiverHoje($dia, $mes)
 function ListarNiverAmanha($dia, $mes)
 {
   $dia = $dia + 1;
-  //FIXME: trocar $sql e $diap
+  //TODO: trocar $sql e $diap
   $diap = "0" . $dia;
   $sql = "SELECT * FROM info_cliente WHERE niver_dia = '$dia' AND niver_mes = '$mes' OR niver_dia = '$diap' AND niver_mes = '$mes'";
 
@@ -358,6 +365,10 @@ function getUltimoServ($id)
       if (!is_null($row["data"])) {
         //divide data em 3 arrays
         $splitData = explode("/", $row["data"]);
+        //auto-completa ano caso seja abreviado
+        if (strlen($splitData[2]) < 4) {
+          $splitData[2] = "20" . $splitData[2];
+        }
         $servComp = $row["descricao"];
         //compara cada ano
         if ($splitData[2] == $ano) {

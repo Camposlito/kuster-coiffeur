@@ -26,7 +26,7 @@ $dados = array(
 
  sqlInsert("info_cliente", $dados);
 
- if ($data != "" || $descricao != "" || strlen($data) == 10 ) {
+ if ($data != "" || $descricao != "") {
    $id = getLastId();
    addServico($id, $data, $descricao);
  }

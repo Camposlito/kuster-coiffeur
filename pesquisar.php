@@ -1,6 +1,6 @@
 <?php
 include "lib/fw.php";
-
+//TODO: implementar pesquisa por numero de telefone
 if (isset($_GET["pesquisa"])) {
   $nome = "%";
   $nome .= $_GET["pesquisa"];

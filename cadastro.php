@@ -134,7 +134,7 @@
         </div>
         <hr class="mb-4">
 
-        <button class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#confirmarModal">Pronto</button>
+        <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#confirmarModal">Pronto</button>
         <!-- <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delServModal" data-whatever="{$row["id_servico"]}§{$row["data"]}"><i class="fas fa-trash-alt"></i></button> -->
       
         <!-- modal confirmar cadastro -->
@@ -195,12 +195,14 @@
   });
 
   //modal confirmar cadastro
+  //FIXME: alterar msg do modal para confirmar cadastro
   $('#confirmarModal').on('show.bs.modal', function(event) {
     var button = $(event.relatedTarget);
-    var str = button.data('whatever');
+    //var str = button.data('whatever');
     var modal = $(this);
-    var idNome = str.split("§");
-    modal.find('.msg-delete').text('Deseja excluir TODOS os dados de "' + idNome[1] + '" do registro?');
-    modal.find('.modal-body input').val(idNome[0]);
+    //var idNome = str.split("§");
+    //modal.find('.msg-delete').text('Deseja excluir TODOS os dados de "' + idNome[1] + '" do registro?');
+    //modal.find('.modal-body input').val(idNome[0]);
+    modal.find('.msg-delete').text('Deseja excluir TODOS os dados egistro?');
   });
 </script>
