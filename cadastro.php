@@ -8,7 +8,7 @@
 
     <div class="col-md-12 order-md-1">
       <h4 class="mb-3"><i class="fas fa-address-card"></i> Informações do Cliente</h4>
-      <form class="needs-validation" novalidate method="post" action="cadastrar.php">
+      <form class="needs-validation" id="cadast" novalidate method="post" action="cadastrar.php">
         <div class="row">
           <div class="col-md-12 mb-3">
             <label for="firstName">Nome <span class="text-muted">(Obrigatório)</span></label>
@@ -135,25 +135,23 @@
         <hr class="mb-4">
 
         <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#confirmarModal">Pronto</button>
-        <!-- <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delServModal" data-whatever="{$row["id_servico"]}§{$row["data"]}"><i class="fas fa-trash-alt"></i></button> -->
-      
+        
         <!-- modal confirmar cadastro -->
         <div class="modal fade" id="confirmarModal" tabindex="-1" role="dialog" aria-labelledby="confirmarModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h4 class="modal-title" id="confirmarModalLabel"><i class="fas fa-user-slash"></i> Confirmar</h4>
+                <h4 class="modal-title" id="confirmarModalLabel"><i class="fas fa-user-plus"></i> Confirmar</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
-                  <div class="msg-delete"></div>
-                  <input type="hidden" name="id_deletar" value="">
+                  <div class="msg-confirma"></div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-success" data-dismiss="modal">Manter</button>
-                  <button type="submit" class="btn btn-danger">Excluir</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                  <button type="button" id="submitButton" class="btn btn-success">Cadastrar</button>
                 </div>
             </div>
           </div>
@@ -195,14 +193,25 @@
   });
 
   //modal confirmar cadastro
-  //FIXME: alterar msg do modal para confirmar cadastro
-  $('#confirmarModal').on('show.bs.modal', function(event) {
-    var button = $(event.relatedTarget);
-    //var str = button.data('whatever');
+  $('#confirmarModal').on('shown.bs.modal', function(event) {
     var modal = $(this);
-    //var idNome = str.split("§");
-    //modal.find('.msg-delete').text('Deseja excluir TODOS os dados de "' + idNome[1] + '" do registro?');
-    //modal.find('.modal-body input').val(idNome[0]);
-    modal.find('.msg-delete').text('Deseja excluir TODOS os dados egistro?');
+    var nome = document.getElementById("firstName").value;
+    modal.find('.msg-confirma').text('Deseja confirmar o cadastro do usuário : ' + nome + ' ?');
+    document.getElementById("submitButton").type = "submit";
   });
+
+  $('#confirmarModal').on('hide.bs.modal', function(event) {
+    var modal = $(this);
+    document.getElementById("submitButton").type = "button";
+  });
+
+  //confirmar cadastro com a tecla enter
+  $('#cadast').keypress(function(event) {
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if (keycode == '13') {
+      //chamar modal confirmar cadastro
+      $('#confirmarModal').modal('show')
+    }
+  });
+
 </script>
