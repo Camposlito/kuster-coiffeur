@@ -1,6 +1,6 @@
 <?php
 include "lib/fw.php";
-//TODO: implementar pesquisa por numero de telefone
+
 if (isset($_GET["pesquisa"])) {
   $nome = "%";
   $nome .= $_GET["pesquisa"];
@@ -9,7 +9,7 @@ if (isset($_GET["pesquisa"])) {
     $sql = "SELECT * FROM info_cliente";
   }else {
     $nome .= "%";
-    $sql = "SELECT * FROM info_cliente WHERE nome LIKE '$nome' ORDER BY nome";
+    $sql = "SELECT * FROM info_cliente WHERE nome LIKE '$nome' OR cell1 LIKE '$nome' ORDER BY nome";
   }
   $resultado = $conn->query($sql);
   if ($resultado !== false) {
