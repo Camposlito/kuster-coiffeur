@@ -141,18 +141,22 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h4 class="modal-title" id="confirmarModalLabel"><i class="fas fa-user-plus"></i> Confirmar</h4>
+                <h4 class="modal-title" id="confirmarModalLabel"><i class="fas fa-user-plus"></i> &nbsp; Confirmar</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
-                  <div class="msg-confirma"></div>
+                <div class="container">
+                  <div class="row">
+                    <h5 class="msg-confirma"></h5>
+                  </div>
                 </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                  <button type="button" id="submitButton" class="btn btn-success">Cadastrar</button>
-                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                <button type="button" id="submitButton" class="btn btn-success">Cadastrar</button>
+              </div>
             </div>
           </div>
         </div>
@@ -196,7 +200,7 @@
   $('#confirmarModal').on('shown.bs.modal', function(event) {
     var modal = $(this);
     var nome = document.getElementById("firstName").value;
-    modal.find('.msg-confirma').text('Deseja confirmar o cadastro do usuário : ' + nome + ' ?');
+    modal.find('.msg-confirma').text('Deseja confirmar o cadastro do usuário " ' + nome + ' "?');
     document.getElementById("submitButton").type = "submit";
   });
 

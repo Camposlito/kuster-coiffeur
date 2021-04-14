@@ -85,7 +85,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="novo-servico.php" method="post">
+        <form class="needs-validation" novalidate action="novo-servico.php" method="post">
           <div class="modal-body">
             <div class="container">
               <div class="row">
@@ -97,11 +97,11 @@
               <div class="row">
                 <div class="col">
                   <label for="data">Data</label>
-                  <input type="text" class="form-control" name="addData" id="addData" placeholder="__/__/____" value="">
+                  <input type="text" class="form-control" name="addData" id="addData" placeholder="__/__/____" value="" required>
                 </div>
                 <div class="col">
                   <label for="servico">Descrição</label>
-                  <input type="text" class="form-control" name="addServico" id="addServico" placeholder="" value="">
+                  <input type="text" class="form-control" name="addServico" id="addServico" placeholder="" value="" required>
                 </div>
               </div>
             </div>

@@ -10,9 +10,8 @@ $id = $_POST["id_user"];
 $niver = $_POST["niver"];
 
 $data = explode("/", $niver);
-$dia = $data[0];
-$dia += 0;
-$mes = $data[1];
+$dia = $data[0] + 0;
+$mes = $data[1] + 0;
 
 $dados = array(
   "nome" => $nome,
